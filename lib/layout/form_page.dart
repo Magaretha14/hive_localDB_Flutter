@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:hive/hive.dart';
+import 'package:hive_localdb/layout/home_page.dart';
 import 'package:hive_localdb/model/contact.dart';
 
 class FormPage extends StatefulWidget {
@@ -82,6 +83,12 @@ class _FormPageState extends State<FormPage> {
                         Contact ct =
                             Contact(name: name!, email: email!, phone: phone!);
                         box.add(ct);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const HomePage(),
+                          ),
+                        );
                       }
                     },
                     child: const Text('Save'))
