@@ -76,22 +76,23 @@ class _FormPageState extends State<FormPage> {
                   height: 10,
                 ),
                 ElevatedButton(
-                    onPressed: () {
-                      if (formkey.currentState!.validate()) {
-                        formkey.currentState!.save();
+                  onPressed: () {
+                    if (formkey.currentState!.validate()) {
+                      formkey.currentState!.save();
 
-                        Contact ct =
-                            Contact(name: name!, email: email!, phone: phone!);
-                        box.add(ct);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const HomePage(),
-                          ),
-                        );
-                      }
-                    },
-                    child: const Text('Save'))
+                      Contact ct =
+                          Contact(name: name!, email: email!, phone: phone!);
+                      box.add(ct);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomePage(),
+                        ),
+                      );
+                    }
+                  },
+                  child: const Text('Save'),
+                )
               ],
             ),
           ),

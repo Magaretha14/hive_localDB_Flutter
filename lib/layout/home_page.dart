@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive_localdb/layout/form_page.dart';
 
 import '../model/contact.dart';
 
@@ -22,17 +23,33 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    ct = box.values.toList();
     return Scaffold(
       body: SafeArea(
         child: ListView.builder(
           itemCount: ct.length,
           itemBuilder: (context, index) {
-            return Card(
-              child: ListTile(
-                leading: const Icon(Icons.person),
-                title: Text(ct[index].name),
-                subtitle: Column(
-                  children: [Text(ct[index].email), Text(ct[index].phone)],
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                elevation: 10,
+                child: ListTile(
+                  leading: const Icon(Icons.person),
+                  title: Text(
+                    ct[index].name,
+                    style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue),
+                  ),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [Text(ct[index].email), Text(ct[index].phone)],
+                  ),
+                  trailing: IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.delete),
+                  ),
                 ),
               ),
             );
@@ -40,7 +57,12 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => FormPage()),
+          );
+        },
         child: const Icon(Icons.add),
       ),
     );
