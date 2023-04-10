@@ -13,6 +13,7 @@ class FormPage extends StatefulWidget {
 
 class _FormPageState extends State<FormPage> {
   late Box<Contact> box;
+  var formkey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -32,6 +33,7 @@ class _FormPageState extends State<FormPage> {
     return Scaffold(
       body: SafeArea(
         child: Form(
+          key: formkey,
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Column(
@@ -74,9 +76,13 @@ class _FormPageState extends State<FormPage> {
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      Contact ct =
-                          Contact(name: name!, email: email!, phone: phone!);
-                      box.add(ct);
+                      if (formkey.currentState!.validate()) {
+                        formkey.currentState!.save();
+
+                        Contact ct =
+                            Contact(name: name!, email: email!, phone: phone!);
+                        box.add(ct);
+                      }
                     },
                     child: const Text('Save'))
               ],
